@@ -9,7 +9,15 @@ Install the package
 npm i https://github.com/StudiesAndMe/s-me-scripts
 ```
 
+Run a command
 
+```
+s-me-scripts "command" "args"
+```
+
+
+
+## The "Deploy" command
 Add a section like this to the package.json of your project and fill out the details
 
 ```` 
