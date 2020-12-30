@@ -1,0 +1,29 @@
+{
+  "name": "s-me-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "s-me-scripts": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudiesAndMe/s-me-scripts.git"
+  },
+  "author": "'Dennis",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/StudiesAndMe/s-me-scripts/issues"
+  },
+  "homepage": "https://github.com/StudiesAndMe/s-me-scripts#readme",
+  "dependencies": {
+    "async": "3.2.0",
+    "aws-sdk": "2.819.0",
+    "globby": "11.0.1",
+    "mime-types": "2.1.27",
+    "prettier": "2.2.1",
+    "read-pkg-up": "7.0.1"
+  }
+}
