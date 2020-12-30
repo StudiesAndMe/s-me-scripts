@@ -33,6 +33,19 @@ Add a section like this to the package.json of your project and fill out the det
 
 #### integrate into CI
 
-Run the command 
+Easiest way is to add a npm script in the package.json and then run it from the config.yml
 
-***s-me-scripts deploy staging*** or ***s-me-scripts deploy production***  
+````
+"deploy-staging": "s-me-scripts deploy staging"
+````
+
+from the config.yml
+````
+- run:
+      name: Deploying to staging
+      command: |
+        npm run deploy-staging
+````
+
+
+Its also possible to define the env directly ***"deploy": "s-me-scripts deploy"*** from the CI "npm run deploy" staging     
