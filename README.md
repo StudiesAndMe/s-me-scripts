@@ -1,4 +1,6 @@
 # s-me-scripts
+This package deploys the build folder to the specified s3 bucket and invalidates the cloudfront distrubution.
+It also sets the corrects file headers depending on the type of project. create-react-app and gatsby projects are supported  
 
 
 ### How to use
@@ -30,6 +32,7 @@ Add a section like this to the package.json of your project and fill out the det
 ````
 
 #### integrate into CI
+
 Run the command 
 
 ***s-me-scripts deploy staging*** or ***s-me-scripts deploy production***  
