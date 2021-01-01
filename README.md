@@ -1,6 +1,6 @@
 # s-me-scripts
-This package deploys the build folder to the specified s3 bucket and invalidates the cloudfront distrubution.
-It also sets the corrects file headers depending on the type of project. create-react-app and gatsby projects are supported  
+
+This package tried to consolidate our scripts folder and exposes a series of commands.
 
 
 ### How to use
@@ -15,9 +15,10 @@ Run a command
 s-me-scripts "command" "args"
 ```
 
-
-
 ## The "Deploy" command
+This command helps deploy the build folder to the specified s3 bucket and invalidates the cloudfront distrubution.
+It also sets the corrects file headers depending on the type of project. create-react-app and gatsby projects are supported  
+
 Add a section like this to the package.json of your project and fill out the details
 
 ```` 
