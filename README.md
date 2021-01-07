@@ -29,8 +29,8 @@ Add a section like this to the package.json of your project and fill out the det
         "distributionId": "the-cloudfront-distribution-id",
         "buildFolder": "./build", // the folder containing the build
         "cacheType": "CRA" // CRA or gatsby
-    }
-    "staging": {
+    },
+    "production": {
         "s3Prefix": "www",
         "bucket": "the-id-of-the-s3-bucket",
         "distributionId": "the-cloudfront-distribution-id",
