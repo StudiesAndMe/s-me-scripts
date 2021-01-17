@@ -16,18 +16,14 @@ exports.uploadToS3 = async (environment, uploadCallback) => {
 
   const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
 
+
   // this setup is for a gatsby project
   const longCache = await globby(getLongCache(environment.cacheType))
-  /* await globby([
-    './public/static/!**!/!*',
-    './public/!**!/!*.js',
-    './public/!**!/!*.css',
-    '!./public/service-worker.js',
-    '!./public/sw.js',
-  ])*/
+
 
   // this setup is for a gatsby project
   const shortCache = await globby(getShortCache(environment.cacheType))
+
 
   const longCacheFiles = buildObjects(longCache, 'public, max-age=31536000, immutable', s3BaseParams)
   const shortCacheFiles = buildObjects(shortCache, 'public, max-age=0, must-revalidate', s3BaseParams)
@@ -37,8 +33,10 @@ exports.uploadToS3 = async (environment, uploadCallback) => {
   // for handling running feedback while files are uploading
   const uploadeFiles = []
 
-  async.eachOfSeries(
+
+  async.eachOfLimit (
     allFiles,
+    4,
     function (value, key, callback) {
       uploadFile(s3, value, environment)
         .then((res) => {
