@@ -33,8 +33,10 @@ exports.uploadToS3 = async (environment, uploadCallback) => {
   // for handling running feedback while files are uploading
   const uploadeFiles = []
 
-  async.eachOfSeries(
+
+  async.eachOfLimit (
     allFiles,
+    4,
     function (value, key, callback) {
       uploadFile(s3, value, environment)
         .then((res) => {
