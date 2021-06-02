@@ -1,0 +1,26 @@
+{
+  "name": "test-file",
+  "s-me-deployment": {
+    "staging": {
+      "s3Prefix": "www",
+      "bucket": "examples-the-id-of-the-s3-bucket",
+      "distributionId": "the-cloudfront-distribution-id",
+      "buildFolder": "./build",
+      "cacheType": "CRA"
+    },
+    "production": {
+      "s3Prefix": "www",
+      "bucket": "the-id-of-the-s3-bucket",
+      "distributionId": "the-cloudfront-distribution-id",
+      "buildFolder": "./build",
+      "cacheType": "CRA"
+    }
+  },
+
+  "scripts": {
+    "deploy-staging": "s-me-scripts deploy staging"
+  },
+  "dependencies": {
+    "s-me-scripts": "file:.."
+  }
+}

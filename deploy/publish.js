@@ -4,9 +4,11 @@ const async = require('async')
 const mime = require('mime-types')
 const globby = require('globby')
 
-exports.uploadToS3 = async (environment, uploadCallback) => {
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
+
+exports.setupFiles = async (deployConfig, callback) => {
   const s3BaseParams = {
-    Bucket: environment.bucket,
+    Bucket: deployConfig.bucket,
     ACL: 'public-read',
     Key: '',
     Body: '',
@@ -14,31 +16,29 @@ exports.uploadToS3 = async (environment, uploadCallback) => {
     ContentType: '',
   }
 
-  const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
-
+  // this setup is for a gatsby project
+  const longCache = await globby(getLongCache(deployConfig.cacheType))
 
   // this setup is for a gatsby project
-  const longCache = await globby(getLongCache(environment.cacheType))
-
-
-  // this setup is for a gatsby project
-  const shortCache = await globby(getShortCache(environment.cacheType))
-
+  const shortCache = await globby(getShortCache(deployConfig.cacheType))
 
   const longCacheFiles = buildObjects(longCache, 'public, max-age=31536000, immutable', s3BaseParams)
   const shortCacheFiles = buildObjects(shortCache, 'public, max-age=0, must-revalidate', s3BaseParams)
 
   const allFiles = longCacheFiles.concat(shortCacheFiles)
+  //return allFiles
+  callback(null, deployConfig, allFiles)
+}
 
+exports.uploadToS3 = async (deployConfig, allFiles, uploadCallback, uploadFilePromise = uploadFile) => {
   // for handling running feedback while files are uploading
   const uploadeFiles = []
 
-
-  async.eachOfLimit (
+  async.eachOfLimit(
     allFiles,
     4,
     function (value, key, callback) {
-      uploadFile(s3, value, environment)
+      uploadFilePromise(s3, value, deployConfig)
         .then((res) => {
           uploadeFiles.push(res)
           //
@@ -104,29 +104,6 @@ const uploadFile = (s3, s3FileObj, environment) => {
         resolve(data.Location)
       }
     })
-  })
-}
-
-// call cloudfront and invalidate cache
-exports.invalidate = (environment, callback) => {
-  const cloudfront = new AWS.CloudFront()
-  const params = {
-    DistributionId: environment.distributionId,
-    InvalidationBatch: {
-      CallerReference: Date.now().toString(),
-      Paths: {
-        Quantity: 1,
-        Items: ['/*'],
-      },
-    },
-  }
-
-  cloudfront.createInvalidation(params, function (err, data) {
-    if (err) {
-      console.error(err, err.stack)
-      return callback(err)
-    }
-    callback(err, data)
   })
 }
 
