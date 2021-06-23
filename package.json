@@ -19,12 +19,15 @@
   },
   "homepage": "https://github.com/StudiesAndMe/s-me-scripts#readme",
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "async": "3.2.0",
     "aws-sdk": "2.819.0",
     "globby": "11.0.1",
+    "inquirer": "^8.1.1",
     "mime-types": "2.1.27",
     "prettier": "2.2.1",
-    "read-pkg-up": "7.0.1"
+    "read-pkg-up": "7.0.1",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
