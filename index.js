@@ -20,8 +20,6 @@ process.on('unhandledRejection', (err) => {
 })
 
 const validCommands = ['deploy', 'cdk']
-console.log(' index > args = ', args[0])
-
 const scriptIndex = args.findIndex((x) => x === command)
 
 if (scriptIndex === -1) {
