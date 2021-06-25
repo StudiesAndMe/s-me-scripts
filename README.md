@@ -2,6 +2,9 @@
 
 This package tried to consolidate our scripts folder and exposes a series of commands.
 
+### General todos
+- [ ] add help command
+- [ ] examples folder
 
 ### How to use
 Install the package
@@ -23,6 +26,10 @@ The stack will auto deploy any brnach you create on your repo.
 
 The CLI with generate a cdk-config.json file which the stack will use and a **infrastucture**
 folder containing the actual stack. the contents of the **infrastucture** folder is pulled from this repo **https://github.com/StudiesAndMe/frontend-stack-cdk-template**
+
+#### TODO
+
+- [ ] generate the circleCi config.yaml
 
 
 .....
