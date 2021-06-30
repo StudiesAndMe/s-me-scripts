@@ -18,7 +18,12 @@ const request = require('superagent')
 
 module.exports = function setup(env) {
   configGenerator((err, result) => {
-    console.log(' setup > result = ', result)
+    if (result.deploy !== 'yes') {
+      console.log('-------------------')
+      console.log(' Setup terminated ')
+      console.log('-------------------')
+      return null
+    }
 
     const p = './cdk-config.json'
     fs.writeFile(p, JSON.stringify(result, null, 2), (err) => {

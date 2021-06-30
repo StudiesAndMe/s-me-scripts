@@ -99,10 +99,14 @@ function startGenerator() {
           return 'eu-central-1'
         },
       },
+      {
+        type: 'list',
+        name: 'deploy',
+        message: 'Do you want to save this config',
+        choices: ['no', 'yes'],
+      },
     ])
     .then((answers) => {
-      //console.log(JSON.stringify(answers, null, '  '))
-
       const buildFolder = answers.FRONTEND_BUILD_FOLDER === CRA_OPTION ? CRA_BUILD_FOLDER : GATSBY_BUILD_FOLDER
 
       const obj = {
@@ -111,8 +115,9 @@ function startGenerator() {
         FRONTEND_BUILD_FOLDER: buildFolder,
         HOSTED_DOMAIN_NAME: answers.HOSTED_DOMAIN_NAME,
         env: { account: answers.account, region: answers.region },
+        deploy: answers.deploy,
       }
-      console.log(JSON.stringify(obj, null, '  '))
+
       return obj
     })
 }

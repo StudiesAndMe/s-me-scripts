@@ -3,6 +3,12 @@
 .idea
 
 
+
+# Used for tesing CDK
+/infrastructure
+cdk-config.json
+
+
 # Logs
 logs
 *.log
