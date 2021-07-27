@@ -22,7 +22,7 @@ s-me-scripts "command" "args"
 
 The cdk command builds a stack using aws cdk.
 A command-line interface will ask you some question and generate a stack for you.
-The stack will auto deploy any brnach you create on your repo.
+The stack will auto deploy any branch you create on your repo.
 
 The CLI with generate a cdk-config.json file which the stack will use and a **infrastucture**
 folder containing the actual stack. the contents of the **infrastucture** folder is pulled from this repo **https://github.com/StudiesAndMe/frontend-stack-cdk-template**
