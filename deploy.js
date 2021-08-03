@@ -23,16 +23,16 @@ AWS.config.update({
 module.exports = function deploy(environmentType) {
   readPkgUp()
     .then((res) => {
-      const config = res.packageJson['s-me-deployment'][environmentType]
+      // should find s-me-deployment in package json
+      const configDeploymentBlock = res.packageJson['s-me-deployment']
+      if (!configDeploymentBlock) {
+        throw new Error('No s-me-deployment object found in package.json file')
+      }
 
+      // should find either staging or production
+      const config = res.packageJson['s-me-deployment'][environmentType]
       if (!config) {
-        const e =
-          'Config could not be found. ' +
-          'Passed value = ' +
-          environmentType +
-          '. ' +
-          'Should be either staging or production'
-        return Promise.reject(e)
+        throw new Error(`environmentType ${environmentType} not found inside s-me-deployment`)
       }
 
       async.waterfall(

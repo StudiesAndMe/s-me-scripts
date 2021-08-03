@@ -26,10 +26,12 @@ if (scriptIndex === -1) {
   console.error(' index > no valid command was passed  ')
 } else {
   if (command === 'deploy') {
+    console.log(' index > run DEPLOY COMMAND ', env)
     return deploy(env)
   }
 
   if (command === 'cdk') {
+    console.log(' index > run CDK COMMAND ')
     return cdkTemplate(env)
   }
 }
