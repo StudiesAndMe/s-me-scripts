@@ -2,12 +2,10 @@
  * Created by @author @ddennis - ddennis.dk aka fantastisk.dk/works aka meresukker.dk on 02/06/2021.
  */
 
-const path = require('path')
 const fs = require('fs')
 const admZip = require('adm-zip')
 const configGenerator = require('./config-generator')
 
-const templateGitUrl = 'https://github.com/StudiesAndMe/frontend-stack-cdk-template.git'
 const gitDownloadLink = 'https://github.com/StudiesAndMe/frontend-stack-cdk-template/archive/refs/heads/main.zip'
 const dest = 'myfile.zip'
 const OUTPUT_FOLDER = './infrastructure'
@@ -38,6 +36,8 @@ module.exports = function setup(env) {
     })
   })
 }
+
+const writeConfigFile = () => {}
 
 function downloadUnzip(urlToZipFile, dest, cb) {
   console.log(' CDK > download ZIP file ')
