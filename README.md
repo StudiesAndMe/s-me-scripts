@@ -1,6 +1,6 @@
 # s-me-scripts
 
-This package tried to consolidate our scripts folder and exposes a series of commands.
+This package tries to consolidate our scripts folder and exposes a series of commands.
 
 ### General todos
 - [ ] add help command
