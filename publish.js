@@ -17,11 +17,10 @@ exports.uploadToS3 = async (environment, uploadCallback) => {
   const s3 = new AWS.S3({ apiVersion: '2006-03-01' })
 
 
-  // this setup is for a gatsby project
+  // get long cache based on project type
   const longCache = await globby(getLongCache(environment.cacheType))
 
-
-  // this setup is for a gatsby project
+  // get short cache based on project type
   const shortCache = await globby(getShortCache(environment.cacheType))
 
 
@@ -131,6 +130,8 @@ exports.invalidate = (environment, callback) => {
 }
 
 const getLongCache = (projectType) => {
+  
+  // this setup is for a create-react-app project
   const CraCache = [
     './build/**',
     '!./build/*.json',
@@ -141,7 +142,8 @@ const getLongCache = (projectType) => {
     '!./build/robots.txt',
     '!./build/service-worker.js',
   ]
-
+  
+  // this setup is for a gatsby project
   const gatsbyCache = [
     './public/static/**/*',
     './public/**/*.js',
@@ -161,6 +163,7 @@ const getShortCache = (projectType) => {
   // this setup is for a gatsby project
   const gatsbyCache = ['./public/**/*.html', './public/page-data/**/*.json']
 
+   // this setup is for a create-react-app project
   const CraCache = [
     '!./build/**',
     './build/*.json',
