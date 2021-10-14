@@ -9,6 +9,7 @@ var inquirer = require('inquirer')
 	"ENV_TYPE": "staging",
 	"FRONTEND_BUILD_FOLDER": "../build",
 	"HOSTED_DOMAIN_NAME": "studies-and-me.com",
+	"PUBLIC_HOSTED_ZONE": true,
 	"env": { "account": "736365631927", "region": "eu-central-1" }
 }*/
 
@@ -66,6 +67,15 @@ function startGenerator() {
 
       {
         type: 'input',
+        name: 'PUBLIC_HOSTED_ZONE',
+        message: 'public',
+        default() {
+          return 'false'
+        },
+      },
+	  
+      {
+        type: 'input',
         name: 'HOSTED_DOMAIN_NAME',
         message: 'domain',
         default() {
@@ -114,6 +124,7 @@ function startGenerator() {
         CdkTemplateStackId: answers.CdkTemplateStackId,
         FRONTEND_BUILD_FOLDER: buildFolder,
         HOSTED_DOMAIN_NAME: answers.HOSTED_DOMAIN_NAME,
+	PUBLIC_HOSTED_ZONE: answers.PUBLIC_HOSTED_ZONE,      
         env: { account: answers.account, region: answers.region },
         deploy: answers.deploy,
       }
