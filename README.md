@@ -18,6 +18,14 @@ Run a command
 s-me-scripts "command" "args"
 ```
 
+Depending on your setup, this is how to directly run it
+
+```
+node node_modules/s-me-scripts "command" "args"
+```
+
+
+
 ## The "cdk" command
 
 The cdk command builds a stack using aws cdk.
