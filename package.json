@@ -21,7 +21,7 @@
   "dependencies": {
     "adm-zip": "^0.5.5",
     "async": "3.2.0",
-    "aws-sdk": "2.819.0",
+    "aws-sdk": "2.1511.0",
     "globby": "11.0.1",
     "inquirer": "^8.1.1",
     "mime-types": "2.1.27",
